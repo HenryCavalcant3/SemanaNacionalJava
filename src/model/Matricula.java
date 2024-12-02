@@ -48,6 +48,7 @@ public class Matricula implements Serializable {
     private Presenca presenca;
 
     public Matricula() {
+        this.ativa = true;
     }
 
     public Integer getId() {
@@ -96,6 +97,16 @@ public class Matricula implements Serializable {
 
     public void setPresenca(Presenca presenca) {
         this.presenca = presenca;
+    }
+    
+    public void addPresenca(Presenca presenca) {
+        presenca.setMatricula(this);
+        this.presenca = presenca;
+    }
+
+    public void removerPresenca(Presenca presenca) {
+        presenca.setMatricula(null);
+        this.presenca = null;
     }
 
     @Override

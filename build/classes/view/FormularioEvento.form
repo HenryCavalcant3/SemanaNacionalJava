@@ -87,15 +87,13 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="btnAdicionar" min="-2" pref="150" max="-2" attributes="0"/>
-                                              <Component id="btnAlterar" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="btnRemover" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <Component id="btnAdicionar" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <Component id="btnAlterar" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="btnPresenca" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                                      <Component id="btnRemover" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="btnLista" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="btnPresenca" alignment="1" min="-2" pref="150" max="-2" attributes="0"/>
+                                  <Component id="btnLista" min="-2" pref="150" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>

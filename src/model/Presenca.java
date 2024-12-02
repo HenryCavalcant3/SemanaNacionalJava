@@ -44,6 +44,11 @@ public class Presenca implements Serializable {
     public Presenca() {
     }
 
+    public Presenca(Date data, int qtdHora) {
+        this.data = data;
+        this.qtdHora = qtdHora;
+    }
+
     public Integer getId() {
         return id;
     }

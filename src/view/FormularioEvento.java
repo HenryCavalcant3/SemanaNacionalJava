@@ -3,15 +3,12 @@ package view;
 import controller.CursoController;
 import controller.SemanaController;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Curso;
 import model.Evento;
-import model.Organizador;
 import model.Semana;
-import util.ValidacoesUtil;
 
 public class FormularioEvento extends javax.swing.JDialog {
     private SemanaController semanaController;
@@ -284,12 +281,11 @@ public class FormularioEvento extends javax.swing.JDialog {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(btnAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(btnRemover, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(btnPresenca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(btnLista, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(btnAdicionar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(btnAlterar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(btnRemover, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnPresenca, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnLista, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel1))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
@@ -420,15 +416,19 @@ public class FormularioEvento extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Selecione um evento na tabela!", "Presença", JOptionPane.WARNING_MESSAGE);
         else {
             Evento evento = semana.getEventos().get(tableEvento.getSelectedRow());
+            
+            FormularioLancarPresenca formularioLancarPresenca = new FormularioLancarPresenca(null, rootPaneCheckingEnabled);
+            
+            formularioLancarPresenca.setEvento(evento);
+            formularioLancarPresenca.setVisible(true);
+
+            semana = semanaController.findById(semana.getId());
+            atualizarTabela();
         }
     }//GEN-LAST:event_btnPresencaActionPerformed
 
     private void btnListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaActionPerformed
-        if (tableEvento.getSelectedRow() == -1)
-            JOptionPane.showMessageDialog(this, "Selecione um evento na tabela!", "Lista", JOptionPane.WARNING_MESSAGE);
-        else {
-            Evento evento = semana.getEventos().get(tableEvento.getSelectedRow());
-        }
+        // TODO add your handling code here:
     }//GEN-LAST:event_btnListaActionPerformed
 
     /**
