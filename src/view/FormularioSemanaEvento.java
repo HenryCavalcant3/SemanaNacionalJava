@@ -377,7 +377,7 @@ public class FormularioSemanaEvento extends javax.swing.JDialog {
                 semanaController.edit(semana);
             }
             
-            JOptionPane.showMessageDialog(this, "Curso " + (isAlterar ? "alterado " : "adicionado ") + "com sucesso!", "Evento", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Evento " + (isAlterar ? "alterado " : "adicionado ") + "com sucesso!", "Evento", JOptionPane.INFORMATION_MESSAGE);
             
             this.dispose();
         }
@@ -395,9 +395,19 @@ public class FormularioSemanaEvento extends javax.swing.JDialog {
         selectParticipante.setVisible(true);
         
         if(participante == null)
-            JOptionPane.showMessageDialog(this, "Nenhum participante selecionado.", "Seleção de participante", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Nenhum responsável selecionado.", "Seleção de responsável", JOptionPane.ERROR_MESSAGE);
         else {
-            evento.addResponsavel(new Responsavel(participante));
+            boolean isAdded = false;
+            
+            for(Responsavel responsavel : evento.getResponsaveis()) {
+                if(responsavel.getParticipante().equals(participante))
+                    isAdded = true;
+            }
+            
+            if(isAdded)
+                JOptionPane.showMessageDialog(this, "O responsável selecionado já foi inserido.", "Seleção de responsável", JOptionPane.ERROR_MESSAGE);
+            else
+                evento.addResponsavel(new Responsavel(participante));
             atualizarTabela();
         }
     }//GEN-LAST:event_btnMaisActionPerformed
