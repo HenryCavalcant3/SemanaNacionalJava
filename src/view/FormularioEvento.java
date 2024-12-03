@@ -460,14 +460,8 @@ public class FormularioEvento extends javax.swing.JDialog {
             }
             
             try {
-                JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/Report/RelatorioClientes.jrxml");
+                JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/Report/RelatorioLista.jrxml");
 
-//                JasperPrint relatorioPreenchido = JasperFillManager.fillReport(
-//                    relatorioCompilado, 
-//                    parametros, 
-//                    new JREmptyDataSource()
-//                );
-                
                 JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, parametros, 
                     new JRBeanCollectionDataSource(participantesLista));
                 

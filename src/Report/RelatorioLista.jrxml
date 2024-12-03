@@ -39,7 +39,7 @@ ORDER BY locadora.cliente.nome DESC]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="24" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<line>
 				<reportElement x="0" y="19" width="555" height="1" uuid="7efc83fc-af0f-4687-98a6-5c776616f1d5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
@@ -129,6 +129,12 @@ ORDER BY locadora.cliente.nome DESC]]>
 				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{cpf}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement x="0" y="22" width="555" height="1" uuid="f8637023-7894-4a96-91ab-8ded64ef72ee">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+			</line>
 		</band>
 	</detail>
 </jasperReport>
