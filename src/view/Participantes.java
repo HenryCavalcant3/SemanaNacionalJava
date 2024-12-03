@@ -50,6 +50,7 @@ public class Participantes extends javax.swing.JDialog {
         btnExcluir = new javax.swing.JButton();
         jSeparator4 = new javax.swing.JSeparator();
         btnVoltar = new javax.swing.JButton();
+        btnAlterar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Participante");
@@ -132,6 +133,14 @@ public class Participantes extends javax.swing.JDialog {
             }
         });
 
+        btnAlterar1.setFont(new java.awt.Font("SourceSans3VF", 1, 18)); // NOI18N
+        btnAlterar1.setText("Redefinir login");
+        btnAlterar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterar1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,7 +164,9 @@ public class Participantes extends javax.swing.JDialog {
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 540, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 380, Short.MAX_VALUE)
+                        .addComponent(btnAlterar1)
+                        .addGap(18, 18, 18)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,7 +198,8 @@ public class Participantes extends javax.swing.JDialog {
                     .addComponent(btnAdicionar)
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir)
-                    .addComponent(btnVoltar))
+                    .addComponent(btnVoltar)
+                    .addComponent(btnAlterar1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -260,6 +272,22 @@ public class Participantes extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
+    private void btnAlterar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterar1ActionPerformed
+        if (tableParticipante.getSelectedRow() == -1)
+            JOptionPane.showMessageDialog(this, "Selecione um participante na tabela!", "Redefinir login", JOptionPane.WARNING_MESSAGE);
+        else {            
+            participante = participantes.get(tableParticipante.getSelectedRow());
+            
+            participante.setLogin(participante.getProntuario());
+            participante.setSenha(participante.getProntuario());
+            
+            JOptionPane.showMessageDialog(this, "Login e senha definidos como prontuário! " + participante.getNome(), "Redefinir login", JOptionPane.INFORMATION_MESSAGE);
+            
+            participantes = participanteController.getAll();
+            atualizarTabela();
+        }
+    }//GEN-LAST:event_btnAlterar1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,6 +334,7 @@ public class Participantes extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnAlterar;
+    private javax.swing.JButton btnAlterar1;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnVoltar;
