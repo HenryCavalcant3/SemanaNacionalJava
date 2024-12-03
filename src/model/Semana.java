@@ -23,6 +23,7 @@ import javax.persistence.TemporalType;
 @Table(name="semana")
 @NamedQueries({
     @NamedQuery(name = "Semana.getAll", query = "SELECT s FROM Semana s"),
+    @NamedQuery(name = "Semana.getAllAtiva", query = "SELECT s FROM Semana s WHERE s.ativa = true"),
     @NamedQuery(name = "Semana.getByNome", query = "SELECT s FROM Semana s WHERE s.nome LIKE :nome")
 })
 public class Semana implements Serializable {

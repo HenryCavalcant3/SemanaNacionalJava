@@ -58,6 +58,7 @@ public class Evento implements Serializable {
     private List<Responsavel> responsaveis;
 
     public Evento() {
+        this.matriculas = new ArrayList<>();
         this.responsaveis = new ArrayList<>();
     }
 
@@ -141,6 +142,16 @@ public class Evento implements Serializable {
     public void removeResponsavel(Responsavel responsavel) {
         responsavel.setEvento(null);
         this.responsaveis.remove(responsavel);
+    }
+    
+    public void addMatricula(Matricula matricula) {
+        matricula.setEvento(this);
+        this.matriculas.add(matricula);
+    }
+    
+    public void removeMatricula(Matricula matricula) {
+        matricula.setEvento(null);
+        this.matriculas.remove(matricula);
     }
 
     @Override

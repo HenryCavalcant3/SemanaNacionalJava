@@ -51,6 +51,12 @@ public class Matricula implements Serializable {
         this.ativa = true;
     }
 
+    public Matricula(Participante participante, Date data) {
+        this.ativa = true;
+        this.participante = participante;
+        this.data = data;
+    }
+
     public Integer getId() {
         return id;
     }
