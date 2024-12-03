@@ -3,12 +3,27 @@ package view;
 import controller.CursoController;
 import controller.SemanaController;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Curso;
+import static model.Curso_.participantes;
 import model.Evento;
+import model.Matricula;
+import model.Participante;
 import model.Semana;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.swing.JRViewer;
 
 public class FormularioEvento extends javax.swing.JDialog {
     private SemanaController semanaController;
@@ -430,7 +445,43 @@ public class FormularioEvento extends javax.swing.JDialog {
     }//GEN-LAST:event_btnPresencaActionPerformed
 
     private void btnListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListaActionPerformed
-        // TODO add your handling code here:
+        if (tableEvento.getSelectedRow() == -1)
+            JOptionPane.showMessageDialog(this, "Selecione um evento na tabela!", "Lista", JOptionPane.WARNING_MESSAGE);
+        else {
+            Evento evento = semana.getEventos().get(tableEvento.getSelectedRow());
+            
+            List<Participante> participantesLista = new ArrayList<>();
+            
+            Map<String, Object> parametros = new HashMap<>();
+            parametros.put("evento", evento.getTitulo());
+            
+            for(Matricula matriculaLista : evento.getMatriculas()) {
+                participantesLista.add(matriculaLista.getParticipante());
+            }
+            
+            try {
+                JasperReport relatorioCompilado = JasperCompileManager.compileReport("src/Report/RelatorioClientes.jrxml");
+
+//                JasperPrint relatorioPreenchido = JasperFillManager.fillReport(
+//                    relatorioCompilado, 
+//                    parametros, 
+//                    new JREmptyDataSource()
+//                );
+                
+                JasperPrint relatorioPreenchido = JasperFillManager.fillReport(relatorioCompilado, parametros, 
+                    new JRBeanCollectionDataSource(participantesLista));
+                
+                JDialog tela = new JDialog(this, "Lista", true);
+                tela.setSize(800, 400);
+
+                JRViewer painelRelatorio = new JRViewer(relatorioPreenchido);
+
+                tela.getContentPane().add(painelRelatorio);
+                tela.setVisible(true);
+            } catch (JRException ex) {
+                JOptionPane.showMessageDialog(this, "Erro ao gerar o certificado", "Certificado", JOptionPane.ERROR_MESSAGE);
+            }
+        }
     }//GEN-LAST:event_btnListaActionPerformed
 
     /**
