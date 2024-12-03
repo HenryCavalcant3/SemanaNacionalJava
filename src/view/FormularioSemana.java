@@ -53,8 +53,8 @@ public class FormularioSemana extends javax.swing.JDialog {
         
         ValidacoesUtil.verificarTexto(inputNome.getText(), "Nome", erros);
         ValidacoesUtil.verificarTexto(inputLocal.getText(), "Local", erros);
-        ValidacoesUtil.verificarTexto(inputInicio.getDateFormatString(), "Início", erros);
-        ValidacoesUtil.verificarTexto(inputFim.getDateFormatString(), "Fim", erros);
+        ValidacoesUtil.verificarTexto(inputInicio.getDate() == null ? "" : (""+inputInicio.getDate().getYear()), "Início", erros);
+        ValidacoesUtil.verificarTexto(inputFim.getDate() == null ? "" : (""+inputFim.getDate().getYear()), "Fim", erros);
         ValidacoesUtil.verificarTexto(inputOrganizador.getText(), "Organizador", erros);
         ValidacoesUtil.verificarTexto(selectCurso.getSelectedItem().toString(), "Curso", erros);
         

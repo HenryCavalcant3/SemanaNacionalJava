@@ -58,9 +58,9 @@ public class FormularioParticipante extends javax.swing.JDialog {
         ValidacoesUtil.verificarTexto(inputProntuario.getText(), "Prontuário", erros);
         ValidacoesUtil.verificarTexto(inputNome.getText(), "Nome", erros);
         ValidacoesUtil.verificarTexto(selectCurso.getSelectedItem().toString(), "Curso", erros);
-        ValidacoesUtil.verificarTexto(inputCpf.getText(), "CPF", erros);
+        ValidacoesUtil.verificarTexto(inputCpf.getText().replaceAll("[^0-9]", ""), "CPF", erros);
         ValidacoesUtil.verificarTexto(inputEmail.getText(), "Email", erros);
-        ValidacoesUtil.verificarTexto(inputTelefone.getText(), "Telefone", erros);
+        ValidacoesUtil.verificarTexto(inputTelefone.getText().replaceAll("[^0-9]", ""), "Telefone", erros);
         ValidacoesUtil.verificarTexto(inputCep.getText(), "CEP", erros);
         ValidacoesUtil.verificarTexto(inputCidade.getText(), "Cidade", erros);
         ValidacoesUtil.verificarTexto(inputEndereco.getText(), "Endereço", erros);
