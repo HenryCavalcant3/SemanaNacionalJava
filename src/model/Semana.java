@@ -59,6 +59,7 @@ public class Semana implements Serializable {
 
     public Semana() {
         this.eventos = new ArrayList<>();
+        this.ativa = true;
     }
 
     public Integer getId() {

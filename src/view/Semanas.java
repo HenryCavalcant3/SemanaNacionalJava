@@ -31,7 +31,7 @@ public class Semanas extends javax.swing.JDialog {
         model.setRowCount(0);
         
         for(Semana semana : semanas) {
-            model.addRow(new Object[]{semana.getNome(), semana.getLocal(), semana.getOrganizador().getNome(), formatador.format(semana.getInicio()), formatador.format(semana.getFim())});
+            model.addRow(new Object[]{semana.getNome(), semana.getLocal(), semana.getOrganizador().getNome(), formatador.format(semana.getInicio()), formatador.format(semana.getFim()), semana.isAtiva() ? "Sim" : "Não"});
         }
     }
 
@@ -54,6 +54,7 @@ public class Semanas extends javax.swing.JDialog {
         jSeparator4 = new javax.swing.JSeparator();
         btnVoltar = new javax.swing.JButton();
         btnAbrir = new javax.swing.JButton();
+        btnAbrir1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Semana");
@@ -82,14 +83,14 @@ public class Semanas extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Nome", "Local", "Organizador", "Início", "Fim"
+                "Nome", "Local", "Organizador", "Início", "Fim", "Ativa"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -144,6 +145,14 @@ public class Semanas extends javax.swing.JDialog {
             }
         });
 
+        btnAbrir1.setFont(new java.awt.Font("SourceSans3VF", 1, 18)); // NOI18N
+        btnAbrir1.setText("Finalizar");
+        btnAbrir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrir1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,9 +176,11 @@ public class Semanas extends javax.swing.JDialog {
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 201, Short.MAX_VALUE)
+                        .addGap(57, 57, 57)
+                        .addComponent(btnAbrir1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addComponent(btnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAlterar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -202,7 +213,8 @@ public class Semanas extends javax.swing.JDialog {
                     .addComponent(btnAlterar)
                     .addComponent(btnExcluir)
                     .addComponent(btnVoltar)
-                    .addComponent(btnAbrir))
+                    .addComponent(btnAbrir)
+                    .addComponent(btnAbrir1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -229,6 +241,8 @@ public class Semanas extends javax.swing.JDialog {
                 semanas = semanaController.getAll();
                 atualizarTabela();
             }
+            
+            JOptionPane.showMessageDialog(this, "Semana excluida com sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 
@@ -245,6 +259,8 @@ public class Semanas extends javax.swing.JDialog {
 
             semanas = semanaController.getAll();
             atualizarTabela();
+            
+            JOptionPane.showMessageDialog(this, "Semana alterada com sucesso!", "Alteração", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
@@ -290,6 +306,28 @@ public class Semanas extends javax.swing.JDialog {
             atualizarTabela();
         }
     }//GEN-LAST:event_btnAbrirActionPerformed
+
+    private void btnAbrir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrir1ActionPerformed
+        if (tableSemana.getSelectedRow() == -1)
+            JOptionPane.showMessageDialog(this, "Selecione uma semana na tabela!", "Finalizar", JOptionPane.WARNING_MESSAGE);
+        else {
+            semana = semanas.get(tableSemana.getSelectedRow());
+            
+            int confirmacao = JOptionPane.showConfirmDialog(this,
+                "Tem certeza que deseja finalizar a semana: " + semana.getNome() + "?",
+                "Confirmação de Finalização",
+                JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+            
+            if(confirmacao == JOptionPane.YES_OPTION) {
+                semana.setAtiva(false);
+                semanaController.edit(semana);
+                semanas = semanaController.getAll();
+                atualizarTabela();
+                JOptionPane.showMessageDialog(this, "Semana finalizada com sucesso!", "Finalizar", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_btnAbrir1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -342,6 +380,7 @@ public class Semanas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
+    private javax.swing.JButton btnAbrir1;
     private javax.swing.JButton btnAdicionar;
     private javax.swing.JButton btnAlterar;
     private javax.swing.JButton btnBuscar;
