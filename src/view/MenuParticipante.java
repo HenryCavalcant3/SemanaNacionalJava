@@ -229,11 +229,10 @@ public class MenuParticipante extends javax.swing.JDialog {
     }//GEN-LAST:event_btnParticipanteMouseEntered
 
     private void btnParticipanteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnParticipanteMouseClicked
-        Participantes participantes = new Participantes(null, rootPaneCheckingEnabled);
+        FormularioParticipante formularioParticipante = new FormularioParticipante(null, rootPaneCheckingEnabled);
 
-        this.setVisible(false);
-        participantes.setVisible(true);
-        this.setVisible(true);
+        formularioParticipante.setParticipante(participante);
+        formularioParticipante.setVisible(true);
     }//GEN-LAST:event_btnParticipanteMouseClicked
 
     private void btnSemanaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSemanaMouseExited
