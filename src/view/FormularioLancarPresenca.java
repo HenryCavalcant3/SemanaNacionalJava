@@ -288,7 +288,7 @@ public class FormularioLancarPresenca extends javax.swing.JDialog {
         }
 
         eventoController.edit(evento);
-        JOptionPane.showMessageDialog(this, "Presença(s) salvar com sucesso!", "Presença", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Presença(s) salvas com sucesso!", "Presença", JOptionPane.INFORMATION_MESSAGE);
         this.dispose();
     }//GEN-LAST:event_btnSalvarActionPerformed
 

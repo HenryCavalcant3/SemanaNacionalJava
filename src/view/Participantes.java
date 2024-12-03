@@ -225,6 +225,8 @@ public class Participantes extends javax.swing.JDialog {
                 participanteController.delete(participante);
                 participantes = participanteController.getAll();
                 atualizarTabela();
+                
+                JOptionPane.showMessageDialog(this, "Participante excluido com sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnExcluirActionPerformed

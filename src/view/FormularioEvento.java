@@ -392,6 +392,8 @@ public class FormularioEvento extends javax.swing.JDialog {
                 semanaController.edit(semana);
                 semana = semanaController.findById(semana.getId());
                 atualizarTabela();
+                
+                JOptionPane.showMessageDialog(this, "Evento excluido com sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnRemoverActionPerformed

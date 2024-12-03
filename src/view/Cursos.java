@@ -215,6 +215,8 @@ public class Cursos extends javax.swing.JDialog {
                 cursoController.delete(curso);
                 cursos = cursoController.getAll();
                 atualizarTabela();
+                
+                JOptionPane.showMessageDialog(this, "Curso excluido com sucesso!", "Exclusão", JOptionPane.INFORMATION_MESSAGE);
             }
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
@@ -232,6 +234,8 @@ public class Cursos extends javax.swing.JDialog {
 
             cursos = cursoController.getAll();
             atualizarTabela();
+            
+            JOptionPane.showMessageDialog(this, "Curso alterado com sucesso!", "Alteração", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnAlterarActionPerformed
 
