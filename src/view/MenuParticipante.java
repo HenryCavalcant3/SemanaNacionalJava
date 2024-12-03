@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Color;
 import java.awt.Cursor;
+import javax.swing.ImageIcon;
 import model.Administrador;
 import model.Participante;
 
@@ -15,6 +16,8 @@ public class MenuParticipante extends javax.swing.JDialog {
 
     public void setParticipante(Participante participante) {
         this.participante = participante;
+        
+        labelBemVindo.setText("Bendo vindo, " + participante.getNome() + "!");
     }
 
     @SuppressWarnings("unchecked")
@@ -30,6 +33,9 @@ public class MenuParticipante extends javax.swing.JDialog {
         barSemana = new javax.swing.JPanel();
         btnParticipante = new javax.swing.JLabel();
         barParticipante = new javax.swing.JPanel();
+        labelBemVindo = new javax.swing.JLabel();
+        btnEntrar = new javax.swing.JPanel();
+        btnExit = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Menu");
@@ -173,6 +179,60 @@ public class MenuParticipante extends javax.swing.JDialog {
                 .addContainerGap(387, Short.MAX_VALUE))
         );
 
+        labelBemVindo.setBackground(new java.awt.Color(51, 51, 51));
+        labelBemVindo.setFont(new java.awt.Font("SourceSans3VF", 1, 20)); // NOI18N
+        labelBemVindo.setForeground(new java.awt.Color(51, 51, 51));
+        labelBemVindo.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        labelBemVindo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icon/person.png"))); // NOI18N
+        labelBemVindo.setText("Bem vindo");
+        labelBemVindo.setAutoscrolls(true);
+
+        btnEntrar.setBackground(new java.awt.Color(100, 152, 254));
+        btnEntrar.setForeground(new java.awt.Color(100, 152, 254));
+        btnEntrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEntrarMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnEntrarMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnEntrarMouseExited(evt);
+            }
+        });
+
+        btnExit.setBackground(new java.awt.Color(100, 152, 254));
+        btnExit.setForeground(new java.awt.Color(100, 152, 254));
+        btnExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icon/exit.png"))); // NOI18N
+        btnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnExitMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btnExitMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnExitMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout btnEntrarLayout = new javax.swing.GroupLayout(btnEntrar);
+        btnEntrar.setLayout(btnEntrarLayout);
+        btnEntrarLayout.setHorizontalGroup(
+            btnEntrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnEntrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnExit)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        btnEntrarLayout.setVerticalGroup(
+            btnEntrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(btnEntrarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnExit)
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -181,8 +241,16 @@ public class MenuParticipante extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelBemVindo, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +259,10 @@ public class MenuParticipante extends javax.swing.JDialog {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(10, 10, 10)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelBemVindo)
+                    .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -262,6 +333,34 @@ public class MenuParticipante extends javax.swing.JDialog {
         this.setVisible(true);
     }//GEN-LAST:event_btnSemanaMouseClicked
 
+    private void btnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnExitMouseClicked
+
+    private void btnExitMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseEntered
+        this.btnExit.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        this.btnExit.setIcon(new ImageIcon(getClass().getResource("/view/icon/exit-focus.png")));
+    }//GEN-LAST:event_btnExitMouseEntered
+
+    private void btnExitMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnExitMouseExited
+        this.btnExit.setIcon(new ImageIcon(getClass().getResource("/view/icon/exit.png")));
+    }//GEN-LAST:event_btnExitMouseExited
+
+    private void btnEntrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_btnEntrarMouseClicked
+
+    private void btnEntrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseEntered
+        this.btnEntrar.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        this.btnEntrar.setForeground(new Color(70,128,193));
+        this.btnEntrar.setBackground(new Color(70,128,193));
+    }//GEN-LAST:event_btnEntrarMouseEntered
+
+    private void btnEntrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEntrarMouseExited
+        this.btnEntrar.setForeground(new Color(100,152,254));
+        this.btnEntrar.setBackground(new Color(100,152,254));
+    }//GEN-LAST:event_btnEntrarMouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -314,6 +413,8 @@ public class MenuParticipante extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel barParticipante;
     private javax.swing.JPanel barSemana;
+    private javax.swing.JPanel btnEntrar;
+    private javax.swing.JLabel btnExit;
     private javax.swing.JLabel btnParticipante;
     private javax.swing.JLabel btnSemana;
     private javax.swing.JLabel jLabel2;
@@ -321,5 +422,6 @@ public class MenuParticipante extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel labelBemVindo;
     // End of variables declaration//GEN-END:variables
 }
